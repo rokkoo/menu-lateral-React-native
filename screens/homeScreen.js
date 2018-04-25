@@ -6,6 +6,8 @@ import {
     Image
  } from "react-native";
 
+
+import { connect } from "react-redux"; 
  import { Icon, Button, Container, Header, Content, Left } from "native-base";
  class homeScreen extends Component{
      static navigationOptions = {
@@ -15,6 +17,7 @@ import {
          )
      }
      render(){
+        console.log(this.props)
          return(
             <Container >
                 <Header>
@@ -28,11 +31,15 @@ import {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    <Text>Ventana de bienvenida</Text>
+                <Text>Ventana de bienvenida</Text>
                 </Content>
             </Container>
          )
      }
  }
 
- export default homeScreen;
+ const mapStateToProps = state => {
+    return { superHeroes: state.superHeroes }
+ }
+ 
+ export default connect(mapStateToProps)(homeScreen);
