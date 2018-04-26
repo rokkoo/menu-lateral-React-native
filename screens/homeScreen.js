@@ -3,12 +3,14 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    Button,
+    Alert
  } from "react-native";
 
 
 import { connect } from "react-redux"; 
- import { Icon, Button, Container, Header, Content, Left } from "native-base";
+ import { Icon, Container, Header, Content, Left } from "native-base";
  class homeScreen extends Component{
      static navigationOptions = {
          drawerIcon:(
@@ -16,8 +18,24 @@ import { connect } from "react-redux";
              style={{ height:24, width:24 }}/>
          )
      }
+
+     _OnPress() {
+        return Alert.alert(this.props.heroes)
+     }
+
+     getSuperHeroes() {
+         const { superHeroes } = this.props
+         return superHeroesData = superHeroes.map((heroes, key) => {
+             console.log('====================================');
+             console.log('heroes -> '+heroes.superhero);
+             console.log('key -> ')+key;
+             console.log('====================================');
+             return <Text onPress={() =>{
+                Alert.alert(heroes.superhero)
+             }} key={key} style={styles.superH}>{heroes.superhero}</Text>
+         })
+     }
      render(){
-        console.log(this.props)
          return(
             <Container >
                 <Header>
@@ -31,7 +49,16 @@ import { connect } from "react-redux";
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                <Text>Ventana de bienvenida</Text>
+                <Text style={styles.head}>Tu lista</Text>
+                <View>
+                    {this.getSuperHeroes()}
+                </View>
+                <Button
+                    onPress={() => {
+                        Alert.alert('You tapped the button!');
+                    }}
+                    title="Press Me"
+                />
                 </Content>
             </Container>
          )
@@ -43,3 +70,18 @@ import { connect } from "react-redux";
  }
  
  export default connect(mapStateToProps)(homeScreen);
+
+ const styles = StyleSheet.create({
+    head:{
+        fontFamily: 'Cochin',
+        fontSize: 34
+    },
+    superH: {
+        fontFamily: 'Cochin',
+        backgroundColor: 'white',
+        width:300,
+        fontSize: 24
+    }
+ })
+
+ 

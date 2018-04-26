@@ -8,7 +8,7 @@ import homeScreen from "./screens/homeScreen";
 import SettingScreen from "./screens/settingScreen";
 import { Header, Container, Body, Content } from 'native-base';
 
-import { Reducers } from "./src/reducers";
+import Reducers from "./src/reducers";
 export default class App extends React.Component {
   render() {
     return (
