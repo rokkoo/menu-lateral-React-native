@@ -3,20 +3,29 @@ import {
     View,
     Text,
     StyleSheet,
+    Platform,
     Image,
     Button,
     Alert
  } from "react-native";
 
-
 import { connect } from "react-redux"; 
- import { Icon, Container, Header, Content, Left } from "native-base";
+import { Icon, Container, Header, Content, Left } from "native-base";
+import settingScreen from './settingScreen';
+
+
  class homeScreen extends Component{
      static navigationOptions = {
          drawerIcon:(
              <Image source={require('../assets/logo/home.png')}
              style={{ height:24, width:24 }}/>
          )
+     }
+     _handlePress = (heroes) =>{
+        console.log('props '+heroes.hero)
+        this.props.navigation.navigate('Heroe', {
+            hero: heroes.superhero
+        })
      }
 
      _OnPress() {
@@ -30,9 +39,11 @@ import { connect } from "react-redux";
              console.log('heroes -> '+heroes.superhero);
              console.log('key -> ')+key;
              console.log('====================================');
-             return <Text onPress={() =>{
-                Alert.alert(heroes.superhero)
-             }} key={key} style={styles.superH}>{heroes.superhero}</Text>
+             return <Text onPress={ () =>{
+                this.props.navigation.navigate('Heroe', {
+                hero: heroes.superhero
+                })
+             } } key={key} style={styles.superH}>{heroes.superhero}</Text>
          })
      }
      render(){
@@ -73,11 +84,29 @@ import { connect } from "react-redux";
 
  const styles = StyleSheet.create({
     head:{
-        fontFamily: 'Cochin',
+        ...Platform.select({
+            ios: {
+                backgroundColor: 'red',
+                fontFamily: 'Cochin'
+              },
+              android: {
+                backgroundColor: 'blue',
+                fontFamily: 'Roboto'
+              },            
+         }),
         fontSize: 34
     },
     superH: {
-        fontFamily: 'Cochin',
+        ...Platform.select({
+            ios: {
+                backgroundColor: 'red',
+                fontFamily: 'Cochin'
+              },
+              android: {
+                backgroundColor: 'blue',
+                fontFamily: 'Roboto'
+              },            
+         }),
         backgroundColor: 'white',
         width:300,
         fontSize: 24
