@@ -24,18 +24,37 @@ import {
                     </Left>
                 </Header>
                 <Content contentContainerStyle={{
-                    flex: 1,
-                    alignItems: 'center',
+                    flexDirection: 'column',
                 }}>
-                <Button
-                    onPress={()=>goBack()}
-                    title = 'Atras'
-                />
-                <Text>{this.props.navigation.state.params.hero}</Text>
+                <Text tyle={styles.back}>
+                    <Button
+                        onPress={()=>goBack()}
+                        title = 'Atras'
+                    />
+                </Text>
+                <View style={styles.container}>
+                    <Text style={styles.content}>{this.props.navigation.state.params.hero}</Text>
+                    <Text style={styles.content}>{this.props.navigation.state.params.company}</Text>
+                </View>
                 <Text>Ventana de superHeroe</Text>
                 </Content>
-            </Container>         )
+            </Container>         
+        )
      }
  }
+
+ const styles = new StyleSheet.create({
+     container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: 'red',
+    },
+     back: {
+         flexDirection: 'row'
+     }
+ })
+
 
  export default superHeroe

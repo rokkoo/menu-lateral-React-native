@@ -37,11 +37,12 @@ import settingScreen from './settingScreen';
          return superHeroesData = superHeroes.map((heroes, key) => {
              console.log('====================================');
              console.log('heroes -> '+heroes.superhero);
-             console.log('key -> ')+key;
+             console.log('heroes -> '+heroes.publisher);
              console.log('====================================');
              return <Text onPress={ () =>{
                 this.props.navigation.navigate('Heroe', {
-                hero: heroes.superhero
+                hero: heroes.superhero,
+                company: heroes.publisher
                 })
              } } key={key} style={styles.superH}>{heroes.superhero}</Text>
          })
