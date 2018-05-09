@@ -95,7 +95,8 @@ import settingScreen from './settingScreen';
                 fontFamily: 'Roboto'
               },            
          }),
-        fontSize: 34
+        fontSize: 34,
+        marginTop: 50
     },
     superH: {
         ...Platform.select({

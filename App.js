@@ -8,7 +8,7 @@ import { Header, Container, Body, Content } from 'native-base';
 import homeScreen from "./screens/homeScreen";
 import SettingScreen from "./screens/settingScreen";
 import heroe from "./screens/superHeroe";
-
+import login from "./screens/login";
 
 import Reducers from "./src/reducers";
 
@@ -16,6 +16,7 @@ import Reducers from "./src/reducers";
 export default class App extends React.Component {
   render() {
     return (
+      //cargamos el index.js
       <Provider store={ createStore(Reducers) }>
         <MyApp />
       </Provider>
@@ -50,9 +51,12 @@ const MyApp = DrawerNavigator({
   },
   Heroe:{
     screen: heroe
+  },
+  Login:{
+    screen: login
   }
   },{
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     drawerPosition: 'left',
     contentComponent: CustomDrawerComponent,
     drawerOpenRoute: 'DrawerOpen',
