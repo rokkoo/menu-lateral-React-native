@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    AsyncStorage
  } from "react-native";
 
  import { Icon, Button, Container, Header, Content, Left } from "native-base";
@@ -15,6 +16,18 @@ import {
             style={{ height:24, width:24 }}/>
         )
     }
+
+    getUser = async () => {
+        try {
+            let user = await AsyncStorage.getItem('user')
+            let userParsed = JSON.parse(user)
+            console.log('Current user ->'+userParsed.name);
+            return <Text>{userParsed.name}</Text>            
+        } catch (error) {
+            
+        }
+    }
+
      render(){
          return(
             <Container>
@@ -29,7 +42,7 @@ import {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    <Text>Ventana de ajustes</Text>
+                <Text>Menú de ajustes</Text>
                 </Content>
             </Container>
          )

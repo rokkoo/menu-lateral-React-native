@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     Image,
-    Button
+    Button,
+    AsyncStorage
  } from "react-native";
 
  import { Icon, Container, Header, Content, Left } from "native-base";
@@ -29,9 +30,10 @@ import {
           });
       
           if (result.type === 'success') {
-            return this.props.navigation.navigate('Home', {
-                user: result.user
-            })
+            AsyncStorage.setItem('user', JSON.stringify(result.user))
+            .then(() => {
+                    return this.props.navigation.navigate('Home')
+                })
           } else {
             return {cancelled: true};
           }

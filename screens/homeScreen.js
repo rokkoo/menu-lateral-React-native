@@ -6,7 +6,8 @@ import {
     Platform,
     Image,
     Button,
-    Alert
+    Alert,
+    AsyncStorage
  } from "react-native";
 
 import { connect } from "react-redux"; 
@@ -31,14 +32,20 @@ import settingScreen from './settingScreen';
      _OnPress() {
         return Alert.alert(this.props.heroes)
      }
-
+     getUser = async () => {
+         try {
+             let user = await AsyncStorage.getItem('user')
+             let userParsed = JSON.parse(user)
+             console.log('Current user ->'+userParsed.name);
+                          
+         } catch (error) {
+             
+         }
+     }
      getSuperHeroes() {
          const { superHeroes } = this.props
+         this.getUser()
          return superHeroesData = superHeroes.map((heroes, key) => {
-             console.log('====================================');
-             console.log('heroes -> '+heroes.superhero);
-             console.log('heroes -> '+heroes.publisher);
-             console.log('====================================');
              return <Text onPress={ () =>{
                 this.props.navigation.navigate('Heroe', {
                 hero: heroes.superhero,
